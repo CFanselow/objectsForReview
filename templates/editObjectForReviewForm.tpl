@@ -9,6 +9,9 @@
  *}
 
 {if $reservedObjects}
+
+	<h2>You can select one of the reserved objects offered:</h2>
+	
 	{foreach from=$reservedObjects item=reservedObject}
 		<script>
 			$(function() {ldelim}
@@ -41,6 +44,8 @@
 	</script>
 
 	{capture assign="actionUrl"}{url router=$smarty.const.ROUTE_COMPONENT component="plugins.generic.objectsForReview.controllers.grid.ObjectsForReviewGridHandler" op="updateObjectForReview" submissionId=$submissionId escape=false}{/capture}
+
+	<h2>You can add a new object here:</h2>
 
 	<form class="pkp_form" id="objectsForReviewForm" method="post" action="{$actionUrl}">
 		{csrf}

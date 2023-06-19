@@ -21,8 +21,6 @@
 
 	{fbvFormArea id="objectsForReviewSettingsFormArea"}
 
-			<!--{fbvElement type="select" id="section" from=$sections selected=$section translate=false size=$fbvStyles.size.SMALL}-->
-
 		{fbvFormSection list=true}
 			{fbvElement type="checkbox" id="onlyReserved" value="1" label="plugins.generic.objectsForReview.settings.onlyReserved" checked=$onlyReserved}
 		{/fbvFormSection}

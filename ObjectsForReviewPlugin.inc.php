@@ -132,6 +132,8 @@ class ObjectsForReviewPlugin extends GenericPlugin {
 			#if ($this->getSetting($context->getId(), 'displayAsSubtitle')) {
 			#	HookRegistry::register('pkp\\services\\pkppublicationservice::_getmany', array($this, 'addSubtitleDisplay'));
 			#}
+			
+			//HookRegistry::register('pkp\\services\\pkppublicationservice::_getmany', array($this, 'addSubtitleDisplay'));
 
 			// Handler for public objects for review page
 			HookRegistry::register('LoadHandler', array($this, 'loadPageHandler'));
@@ -144,6 +146,8 @@ class ObjectsForReviewPlugin extends GenericPlugin {
 		}
 		return $success;
 	}
+	
+
 
 	public function addToSchema($hookName, $params) {
 		$schema =& $params[0];
