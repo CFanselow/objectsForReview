@@ -286,6 +286,18 @@ class ObjectsForReviewGridHandler extends GridHandler {
 			$objectForReview->setSubmissionId($submissionId);
 			$objectForReviewDao->updateObject($objectForReview);
 		}
+		
+		// insert book as subtitle (todo: settings option)
+		if ($submissionId){
+			$submissionDao = DAORegistry::getDAO('SubmissionDAO');
+			$submission = $submissionDao->getById($submissionId);
+			$publicationDao = DAORegistry::getDAO('PublicationDAO');
+			$publication = $publicationDao->getById($submission->getData('currentPublicationId'));
+			$publication->setData('subtitle',$objectForReview->getData('authors').": ". strip_tags($objectForReview->getData('title')).". ".$objectForReview->getData('publisher').". ".$objectForReview->getData('year'), "en_US");
+			$publicationDao->updateObject($publication);	
+		}		
+		//$publication->setData('subtitle',$this->getData('authors').": ". strip_tags($this->getData('title')).". ".$this->getData('publisher').". ".$this->getData('year'), "en_US");
+
 
 		return DAO::getDataChangedEvent($submissionId);
 	}

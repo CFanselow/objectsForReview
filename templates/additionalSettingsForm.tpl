@@ -13,10 +13,7 @@
 	{capture assign="objectsForReviewGridUrl"}{url router=$smarty.const.ROUTE_COMPONENT component="plugins.generic.objectsForReview.controllers.grid.ObjectsForReviewManagementGridHandler" op="fetchGrid" escape=false}{/capture}
 	{load_url_in_div id="objectsForReviewGridContainer" url=$objectsForReviewGridUrl}
 
-	$smarty->assign('lineBreak',"\n");
-	{$lineBreak|nl2br}
-
-	<pkp-form
+	<pkp-form style="padding-top: 20px"
 		v-bind="components.{$smarty.const.FORM_ADDITIONAL_SETTINGS}"
 		@set="set"
 	/>

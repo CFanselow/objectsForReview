@@ -142,13 +142,15 @@ class ObjectsForReviewForm extends Form {
 		$objectForReview->setPublisher($this->getData('publisher'));
 		$objectForReview->setCreator("workflow");
 
-		// insert book as subtitle
-		$submissionDao = DAORegistry::getDAO('SubmissionDAO');
-		$submission = $submissionDao->getById($this->submissionId);
-		$publicationDao = DAORegistry::getDAO('PublicationDAO');
-		$publication = $publicationDao->getById($submission->getData('currentPublicationId'));
-		$publication->setData('subtitle',$this->getData('authors').": ". strip_tags($this->getData('title')).". ".$this->getData('publisher').". ".$this->getData('year'), "en_US");
-		$publicationDao->updateObject($publication);
+		// insert book as subtitle  (todo: settings option)
+		if ($this->submissionId){
+			$submissionDao = DAORegistry::getDAO('SubmissionDAO');
+			$submission = $submissionDao->getById($this->submissionId);
+			$publicationDao = DAORegistry::getDAO('PublicationDAO');
+			$publication = $publicationDao->getById($submission->getData('currentPublicationId'));
+			$publication->setData('subtitle',$this->getData('authors').": ". strip_tags($this->getData('title')).". ".$this->getData('publisher').". ".$this->getData('year'), "en_US");
+			$publicationDao->updateObject($publication);	
+		}
 
 		if ($objectId) {
 			$objectForReviewDao->updateObject($objectForReview);

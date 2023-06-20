@@ -44,7 +44,7 @@
 			</td>
 			<td>
 				{$objectForReview.publisher}
-				</td>
+			</td>
 			<td>
 				{$objectForReview.year}
 			</td>
